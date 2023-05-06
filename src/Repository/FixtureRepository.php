@@ -38,6 +38,27 @@ class FixtureRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByDatePlayoff($Date, $orderBy = 'ASC')
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.Date = :Date')
+            ->setParameter('Date', $Date)
+            ->andWhere('f.Id_competition = 1')
+            ->orderBy('f.Heure', $orderBy)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByDatePlayout($Date, $orderBy = 'ASC')
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.Date = :Date')
+            ->setParameter('Date', $Date)
+            ->andWhere('f.Id_competition = 2')
+            ->orderBy('f.Heure', $orderBy)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Fixture[] Returns an array of Fixture objects
