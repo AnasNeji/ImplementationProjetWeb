@@ -14,6 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Fixture[]    findAll()
  * @method Fixture[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class FixtureRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -37,6 +38,24 @@ class FixtureRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+    public function findByDatePlayoff($Date)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.Date = :Date')
+            ->setParameter('Date', $Date)
+            ->andWhere('f.Id_competition = 1')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findByDatePlayout($Date)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.Date = :Date')
+            ->setParameter('Date', $Date)
+            ->andWhere('f.Id_competition = 2')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**
