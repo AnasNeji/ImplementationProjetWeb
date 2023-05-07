@@ -104,9 +104,11 @@
                 {% for fixture in fixtures_playoff %}
                     <li class="list-group-item d-inline-flex" style="gap: 10vw ">
                         {% if fixture.encours %}
-                            <div>En cours</div>
+                            <div style="width: 100px">En cours</div>
                         {% elseif fixture.termine %}
-                            <div>Terminé</div>
+                            <div style="width: 100px">Terminé</div>
+                        {% else%}
+                            <div style="width: 100px"></div>
                         {% endif%}
                         <div class="mx-auto d-inline-flex" style="gap: 1vw">
                             <img
@@ -152,9 +154,11 @@
                 {% for fixture in fixtures_playout %}
                     <li class="list-group-item d-inline-flex" style="gap: 10vw ">
                         {% if fixture.encours %}
-                            <div>En cours</div>
+                            <div style="width: 100px">En cours</div>
                         {% elseif fixture.termine %}
-                            <div>Terminé</div>
+                            <div style="width: 100px">Terminé</div>
+                        {% else%}
+                            <div style="width: 100px"></div>
                         {% endif%}
                         <div class="mx-auto d-inline-flex" style="gap: 1vw">
                             <img
