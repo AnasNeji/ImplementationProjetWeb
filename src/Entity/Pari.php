@@ -24,6 +24,9 @@ class Pari
     #[ORM\Column]
     private ?bool $resultat = null;
 
+    #[ORM\Column]
+    private ?int $montant_parie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class Pari
     public function setResultat(bool $resultat): self
     {
         $this->resultat = $resultat;
+
+        return $this;
+    }
+
+    public function getMontantParie(): ?int
+    {
+        return $this->montant_parie;
+    }
+
+    public function setMontantParie(int $montant_parie): self
+    {
+        $this->montant_parie = $montant_parie;
 
         return $this;
     }
