@@ -62,12 +62,13 @@
                         >Page d'accueil</a
                         >
                         <a class="nav-link" href="/Bet.html">Lancer un pari</a>
+                        <a class="nav-link" href="/WinnerPage.html">Voir les paris gagnés</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <main style="padding: 3vh 1vw ;padding-bottom: 10vh;">
+    <main style="padding: 3vh 1vw ;padding-bottom: 10vh;min-height: 100vh;">
         <div id="calendar">
             <b-container>
                 <b-row>
@@ -101,7 +102,7 @@
                 <li class="list-group-item d-inline-flex" style="gap: 10vw">pas de matches pour cette date</li>
                 {% endif%}
                 {% for fixture in fixtures_playoff %}
-                    <li class="list-group-item d-inline-flex" style="gap: 10vw">
+                    <li class="list-group-item d-inline-flex" style="gap: 10vw ">
                         {% if fixture.encours %}
                             <div>En cours</div>
                         {% elseif fixture.termine %}
@@ -187,7 +188,7 @@
             </div>
 
     </main>
-    <footer class="bg-dark text-center text-white" style="position: absolute;bottom: 0px ;width: 100vw">
+    <footer class="bg-dark text-center text-white" style="position: relative;bottom: 0px;">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Social media -->
