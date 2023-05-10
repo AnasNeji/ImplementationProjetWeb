@@ -1,0 +1,45 @@
+{# templates/login.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body onload="alert_error()">
+<h1>Login</h1>
+
+<form method="post" action="{{ 'login' }}">
+    <div class="mb-3">
+        {% if emailnon=='non'  %}
+        <div class="alert">Invalid login</div>
+        {% elseif passwordnon=='non' %}
+        <div class="alert">Incorrect password</div>
+        {% endif %}
+        <label for="Login" class="form-label">Login</label>
+        <input type="email" class="form-control" placeholder="entrez votre Login" id="exampleuser"
+                {% if emailnon is defined and emailnon is not empty %}
+                    style="border:1px solid red;"
+                {% endif %}
+               name="Login" required
+        >
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="Password" class="form-label">mot de passe</label>
+        <input type="password" class="form-control" placeholder="entrez votre mot de passe" id="Password" name="Password"
+                {% if passwordnon is defined and passwordnon is not empty%}
+                     style="border:1px solid red;"
+                {% endif %}
+               required >
+    </div>
+    <button type="submit" class="btn btn-primary" name="login" >Submit</button>
+
+</form>
+</body>
+<script>
+
+
+</script>
+</html>

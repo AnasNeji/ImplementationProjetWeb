@@ -39,6 +39,9 @@ class PariSingulierRepository extends ServiceEntityRepository
         }
     }
 
+
+
+
 //    /**
 //     * @return PariSingulier[] Returns an array of PariSingulier objects
 //     */
