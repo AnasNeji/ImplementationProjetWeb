@@ -103,8 +103,6 @@
                             <li class="list-group-item">Date de
                                 naissance: {{ user.getDateNaissance()|date('d/m/Y') }}</li>
                             <li class="list-group-item">Numero Telephone: {{ user.getNumeroTelephone() }} </li>
-
-
                             <li class="list-group-item">
                                 <p>Liste des anciens bets</p>
                                 <div class="accordion" id="accordionExample">
@@ -128,8 +126,8 @@
                                                         <p>{{ parisingulier.getPariSingulierDetails() }}</p>
                                                     {% endfor %}
                                                     <p>Montant parié :{{ pari.getMontantParie() }}Dt</p>
-                                                    <p>Montant gagné en cas de gain : {{ pari.getMontantParie() }}
-                                                        *{{ repository.getTotalOdds(pari.id) }}Dt</p>
+                                                    <p>Montant gagné en cas de gain : {{ pari.getMontantParie()* repository.getTotalOdds(pari.id)  }}
+                                                        Dt</p>
                                                 </div>
                                             </div>
                                         </div>
