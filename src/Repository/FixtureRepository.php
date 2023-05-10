@@ -61,7 +61,6 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
 //    /**
 //     * @return Fixture[] Returns an array of Fixture objects
 //     */
