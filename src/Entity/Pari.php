@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Entity;
-
+use App\Repository\PariSingulierRepository;
 use App\Repository\PariRepository;
+use Doctrine\Bundle\DoctrineBundle\Dbal\ManagerRegistryAwareConnectionProvider;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Persistence\ManagerRegistry;
 
 #[ORM\Entity(repositoryClass: PariRepository::class)]
 class Pari
@@ -26,6 +29,8 @@ class Pari
 
     #[ORM\Column]
     private ?int $montant_parie = null;
+
+
 
     public function getId(): ?int
     {
@@ -79,4 +84,7 @@ class Pari
 
         return $this;
     }
+
+
+
 }
