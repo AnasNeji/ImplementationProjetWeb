@@ -36,17 +36,29 @@ class ProfileController extends AbstractController
 
 
         $form->handleRequest($request);
-/*
-        if (($form->isSubmitted())&&($form->isValid())) {
+        if ($form->isSubmitted() && ($form->isValid())) {
 
-                    $entityManager->persist($user[0]);
-                    $entityManager->flush();
-                    return $this->render('profile/index.html.twig', [
-                        'user' => $user[0], 'paris' => $paris, 'form' => $form->createView(), 'repository' => $repository,
-                        'Passwordform' => $PasswordForm->createView(),'message'=>''
-                    ]);
+            $entityManager->persist($user[0]);
+            $entityManager->flush();
+            return $this->render('profile/index.html.twig', [
+                'user' => $user[0], 'paris' => $paris, 'form' => $form->createView(), 'repository' => $repository,
+                'Passwordform' => $PasswordForm->createView(),
+            ]);
 
-                }*/
+
+        }
+
+        /*
+                if (($form->isSubmitted())&&($form->isValid())) {
+
+                            $entityManager->persist($user[0]);
+                            $entityManager->flush();
+                            return $this->render('profile/index.html.twig', [
+                                'user' => $user[0], 'paris' => $paris, 'form' => $form->createView(), 'repository' => $repository,
+                                'Passwordform' => $PasswordForm->createView(),'message'=>''
+                            ]);
+
+                        }*/
 
 
         $PasswordForm->handleRequest($request);
@@ -62,7 +74,7 @@ class ProfileController extends AbstractController
                 $confirmNewPassword = $data['confirmNewPassword'];
                 if (!($oldPassword == $user[0]->getPassword())) {
                     $message = "Ancien Mot de Passe erroné";
-                    return $this->render('profile/ChangePassword.html.twig', [
+                    return $this->render('profile/ModifierProfil.html.twig', [
                         'user' => $user[0], 'paris' => $paris, 'form' => $form->createView(), 'repository' => $repository,
                         'Passwordform' => $PasswordForm->createView(), 'message' => $message,
                     ]);
@@ -95,17 +107,6 @@ class ProfileController extends AbstractController
             ]);
         }
 
-        if ($form->isSubmitted() && ($form->isValid())) {
-
-            $entityManager->persist($user[0]);
-            $entityManager->flush();
-            return $this->render('profile/index.html.twig', [
-                'user' => $user[0], 'paris' => $paris, 'form' => $form->createView(), 'repository' => $repository,
-                'Passwordform' => $PasswordForm->createView(),
-            ]);
-
-
-        }
 
         // Render the Twig template with user data as variables
         return $this->render('profile/index.html.twig', [

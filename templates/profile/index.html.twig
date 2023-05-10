@@ -140,20 +140,20 @@
                     </div>
                     <div class="tab-pane " id="ChangerMDP" role="tabpanel">
                         <h1>Changer Mot de Passe</h1>
+
                         {{ form_start(Passwordform) }}
 
                         {{ form_row(Passwordform.oldPassword) }}
                         {{ form_errors(Passwordform.oldPassword) }}
 
                         {{ form_row(Passwordform.newPassword) }}
+
                         {{ form_errors(Passwordform.newPassword) }}
 
                         {{ form_row(Passwordform.confirmNewPassword) }}
                         {{ form_errors(Passwordform.confirmNewPassword) }}
 
-                        {{ form_rest(Passwordform) }}
-
-
+                        {{ form_end(Passwordform) }}
 
                         <!--<form>
                             <div class="form-group">
@@ -187,8 +187,8 @@
                     </div>
                     <div class="tab-pane " id="Modifier_profile" role="tabpanel">
                         <h1>Modifier Profile</h1>
-                            {{ form(form) }}
 
+                            {{ form(form) }}
 
                     </div>
                     <div class="tab-pane " id="Deconnexion" role="tabpanel">
