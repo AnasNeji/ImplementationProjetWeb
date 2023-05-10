@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PariSingulierRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -78,6 +78,42 @@ class PariSingulier
         $this->Id_pari = $Id_pari;
 
         return $this;
+    }
+    public function getCote()
+    {
+        /*$entityManager = $this->getEntityManager();
+        $fixture = $entityManager->createQuery(
+            'SELECT f
+            FROM App\Entity\Fixture f
+            WHERE f.id = :idFixture'
+        )->setParameter('idFixture', $this->Id_fixture)->getSingleResult();
+*/
+        $fixture=$this->Id_fixture;
+
+        return match ($this->Choix) {
+            '1' => $fixture->getOdds1(),
+            'x' => $fixture->getOddsX(),
+            '2' => $fixture->getOdds2(),
+            default => null,
+        };
+    }
+    public function getPariSingulierDetails()
+    {
+        /*$entityManager = $this->getEntityManager();
+        $fixture = $entityManager->createQuery(
+            'SELECT f
+        FROM src\Entity\Fixture f
+        WHERE f.id = :idFixture'
+        )->setParameter('idFixture', $this->Id_fixture)->getSingleResult();*/
+        $fixture=$this->Id_fixture;
+
+        $Match_Details=$fixture->getEquipe1()->getAbreviation().
+                        "   vs    ".
+                        $fixture->getEquipe2()->getAbreviation().
+                        $this->getCote().
+                        "       choix= ".
+                        $this->getChoix();
+        return $Match_Details;
     }
 
 }

@@ -6,3 +6,8 @@ controllers:
 app_login:
     path: /login
     controller: App\Controller\LoginController::login
+profile:
+    path: /profile/{id}
+    controller: App\Controller\ProfileController::profile
+
+

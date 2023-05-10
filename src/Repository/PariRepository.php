@@ -42,17 +42,30 @@ class PariRepository extends ServiceEntityRepository
 //    /**
 //     * @return Pari[] Returns an array of Pari objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByUserId($UserId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.Id_user = :val')
+            ->setParameter('val', $UserId)
+            //->orderBy('p.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /*public function getPariSinguliers(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+        FROM src\Entity\PariSingulier p
+        WHERE p.pariPrincipal = :idPariPrincipal'
+        )->setParameter('idPariPrincipal', $this->id);
+
+        return $query->getResult();
+    }*/
+
 
 //    public function findOneBySomeField($value): ?Pari
 //    {
