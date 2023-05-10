@@ -38,11 +38,10 @@ class PariRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findByResultat($PariId): array
+    public function findByResultat(): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.resultat = :true')
-            ->setParameter('val', $PariId)
             //->orderBy('p.id', 'ASC')
             //->setMaxResults(10)
             ->getQuery()
