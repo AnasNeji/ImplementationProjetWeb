@@ -1,0 +1,27 @@
+.betting{
+    margin-right:100px;
+    margin-left: 15px;
+    /*border: 2px solid #000000;*/ /* sets the border size and color */
+    background-color: #d3d0d0; /* sets the background color */
+    padding: 17px; /* adds padding inside the box */
+    font-family: Arial, sans-serif; /* sets the font family */
+    font-weight: bold; /* sets the font weight to bold */
+    font-size: 20px;
+
+}
+
+.navbar {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+main{
+    background-color: #f8f9fa;
+}
+
+.btn-small {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    text-align: center;
+}
