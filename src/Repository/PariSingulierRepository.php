@@ -41,6 +41,35 @@ class PariSingulierRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByPariId($PariId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.Id_pari = :val')
+            ->setParameter('val', $PariId)
+            //->orderBy('p.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+    public function getTotalOdds($IdPari): float {
+
+        $PariSinguliers = $this->findByPariId($IdPari);
+        $totalOdds = 1.0;
+        foreach ($PariSinguliers as $PariSingulier) {
+            $totalOdds *= $PariSingulier->getCote();
+        }
+        return $totalOdds;
+
+
+    }
+
+
+
+
+
 
 //    /**
 //     * @return PariSingulier[] Returns an array of PariSingulier objects
