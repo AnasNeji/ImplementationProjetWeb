@@ -201,4 +201,14 @@ class Fixture
 
         return $this;
     }
+    public function GetWinner():string
+    {
+
+        if ($this->Goals_Equipe1>$this->Goals_Equipe2)
+            return '1';
+        else if ($this->Goals_Equipe1<$this->Goals_Equipe2)
+            return '2';
+        else return 'X';
+
+    }
 }

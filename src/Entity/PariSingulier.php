@@ -4,6 +4,7 @@ namespace App\Entity;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PariSingulierRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Expr\Cast\Bool_;
 
 #[ORM\Entity(repositoryClass: PariSingulierRepository::class)]
 class PariSingulier
@@ -79,7 +80,7 @@ class PariSingulier
 
         return $this;
     }
-    public function getCote()
+    public function getCote():string
     {
         /*$entityManager = $this->getEntityManager();
         $fixture = $entityManager->createQuery(
@@ -117,5 +118,15 @@ class PariSingulier
 
         return $Match_Details;
     }
-
+    public function UpdateResultat():Bool
+    {
+        $fixture = $this->getIdFixture();
+        if ($fixture->GetWinner() == $this->getChoix()) {
+            $this->resultat = 1;
+            return 1;
+        } else {
+            $this->resultat = 0;
+            return 0;
+        }
+    }
 }

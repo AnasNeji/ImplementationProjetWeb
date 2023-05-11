@@ -101,6 +101,7 @@ class PariRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
     /*public function getPariSinguliers(): array
     {
         $entityManager = $this->getEntityManager();

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\PariSingulier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\Cast\Bool_;
 
 /**
  * @extends ServiceEntityRepository<PariSingulier>
@@ -71,6 +72,7 @@ class PariSingulierRepository extends ServiceEntityRepository
             $totalOdds *= $PariSingulier->getCote();
         }
         return $totalOdds;
+    }
 
 //    public function findOneBySomeField($value): ?PariSingulier
 //    {
@@ -81,5 +83,5 @@ class PariSingulierRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-    }
+
 }

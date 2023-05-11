@@ -61,20 +61,32 @@ class FixtureRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function winner($id):String
+    {   $fixture=$this->findByFixtureId($id);
+
+        if ($fixture[0]->goals_equipe1>$fixture[0]->goals_equipe2)
+            return '1';
+        else if ($fixture[0]->goals_equipe1<$fixture[0]->goals_equipe2)
+            return '2';
+        else return 'x';
+    }
+
+
+
 //    /**
 //     * @return Fixture[] Returns an array of Fixture objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByFixtureId($id): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id = :val')
+            ->setParameter('val', $id)
+            //->orderBy('f.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Fixture
 //    {
