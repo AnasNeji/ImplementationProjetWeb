@@ -25,7 +25,7 @@ class ProfileController extends AbstractController
     {
 
 //        if (!($this->session->has('user_id'))) {return $this->redirect('/login');};
-        $connecteduser=$userRepository->findBy(['Username' => $session['username']]);
+        //$connecteduser=$userRepository->findBy(['Username' => $session['username']]);
 //        if($id==null)
 //        {
 //            $id=1;

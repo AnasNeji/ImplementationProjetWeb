@@ -44,17 +44,18 @@ class BettingController extends AbstractController
         $currentDate=new DateTime();
         $pari=new Pari();
         //creating user until relinking with the current one
-        $usr=new User();
-        $usr->setLogin("gggg");
-        $usr->setNom("mohsen");
-        $usr->setPrenom("limam");
-        $usr->setSolde(48);
-        $usr->setUsername("habibst1");
-        $usr->setDateNaissance($currentDate);
-        $usr->setNumeroTelephone("24509099");
-        $usr->setPassword("pwpwpw");
-        $entityManager->persist($usr);
-        $pari->setIdUser($usr);
+        $usr=$entityManager->getRepository(User::class)->findById(1);
+//        $usr=new User();
+//        $usr->setLogin("gggg");
+//        $usr->setNom("mohsen");
+//        $usr->setPrenom("limam");
+//        $usr->setSolde(48);
+//        $usr->setUsername("habibst1");
+//        $usr->setDateNaissance($currentDate);
+//        $usr->setNumeroTelephone("24509099");
+//        $usr->setPassword("pwpwpw");
+//        $entityManager->persist($usr);
+        $pari->setIdUser($usr[0]);
         $pari->setResultat(0);
         $pari->setMontantParie($montant);
         $pari->setDateCreation($currentDate);
@@ -76,9 +77,10 @@ class BettingController extends AbstractController
         }
         $tab=null;
 
-        if ($usr->getSolde() < $montant) {
+        if ($usr[0]->getSolde() < $montant) {
             $this->addFlash('error', 'Your balance is not sufficient for this bet!');
         } else {
+            $usr[0]->setSolde($usr[0]->getSolde()-$montant);
             $entityManager->flush();
 
             $this->addFlash('success', 'Your bet has been placed successfully!');

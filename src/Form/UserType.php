@@ -50,12 +50,6 @@ class UserType extends AbstractType
                 ],
             ])
 
-            ->add('Solde', NumberType::class, [
-                'constraints' => [
-                    new NotBlank(['message' => 'Le champ olde est obligatoire.']),
-                    new GreaterThan(['value' => 0, 'message' => 'Le champ olde doit être supérieur à zéro.']),
-                ],
-            ])
             ->add('Username', null, [
                 'constraints' => [
                     new NotBlank(['message' => 'Le champ Nom d\'utilisateur est obligatoire.']),
