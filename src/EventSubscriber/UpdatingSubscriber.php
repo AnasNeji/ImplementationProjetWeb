@@ -1,9 +1,6 @@
 <?php
 
 namespace App\EventSubscriber;
-
-
-
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -19,60 +16,36 @@ class UpdatingSubscriber implements EventSubscriber
             Events::preUpdate,
         ];
     }
+
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
 
-        if ($entity instanceof Fixture && $args->hasChangedField('Termine') && $entity->isTermine() == 1) {
-            $entityManager = $args->getObjectManager();
-            $pariSinguliers=$entityManager->getRepository(PariSingulier::class)->findBy(['Id_fixture' => $entity->getId()]);
-            foreach($pariSinguliers as $pariSingulier)
-            {
-                $PariPrincip=$entityManager->getRepository(Pari::class)->findoneBy(['id' => $pariSingulier->getIdPari()]);
+        if ($entity instanceof Fixture && $args->hasChangedField('termine') && $entity->isTermine() == 1) {
+            $entityManager = $args->getEntityManager();
+            $pariSinguliers = $entityManager->getRepository(PariSingulier::class)->findBy(['Id_fixture' => $entity->getId()]);
+            if (!empty($pariSinguliers)) {
+                foreach ($pariSinguliers as $pariSingulier) {
+                    $PariPrincip = $pariSingulier->getPari();
 
-
-                if($pariSingulier->UpdateResultat())
-                {
-                    $PariPrincipStatus=1;
-                    $pariS=$entityManager->getRepository(PariSingulier::class)->findBy(['Id_pari' => $pariSingulier->getIdPari()]);
-                    foreach ($pariS as $pari)
-                    {
-                       if(!($pari->isResultat()))
-                       {
-                           $PariPrincip->setResultat(0);
-                           $PariPrincipStatus=0;
-                           break;
-                       }
-
-                    }
-                    $PariPrincip->setResultat($PariPrincipStatus);
-                    $entityManager->flush();
-
-
-                }
-                else
-                {
-                    $PariPrincip->setResultat(0);
-                    $entityManager->flush();
-                }
-
-            }
-/*            $paris = $entityManager->getRepository(Pari::class)->findBy(['fixture' => $entity]);
-
-            foreach ($paris as $pari) {
-                $pariResult = 1;
-                foreach ($pari->getPariSinguliers() as $pariSingulier) {
-                    if ($pariSingulier->getResultat() == 0) {
-                        $pariResult = 0;
-                        break;
+                    if ($pariSingulier->updateResultat()) {
+                        $PariPrincipStatus = 1;
+                        $pariS = $entityManager->getRepository(PariSingulier::class)->findBy(['Id_pari' => $pariSingulier->getIdPari()]);
+                        foreach ($pariS as $pari) {
+                            if (!($pari->isResultat())) {
+                                $PariPrincip->setResultat(0);
+                                $PariPrincipStatus = 0;
+                                break;
+                            }
+                        }
+                        $PariPrincip->setResultat($PariPrincipStatus);
+                        $entityManager->flush();
+                    } else {
+                        $PariPrincip->setResultat(0);
+                        $entityManager->flush();
                     }
                 }
-
-                $pari->setResultat($pariResult);
-                $entityManager->persist($pari);
             }
-
-            $entityManager->flush();*/
         }
     }
 }

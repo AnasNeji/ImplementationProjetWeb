@@ -17,7 +17,7 @@ class WinningBetsController extends AbstractController
     {   $paris=$pariRepository->findByResultat(1);
 
         return $this->render('winning_bets/index.html.twig', [
-            'id_pari' => $paris,'repository'=>$pariSingulierRepository
+            'paris' => $paris,'repository'=>$pariSingulierRepository
 
         ]);
     }
