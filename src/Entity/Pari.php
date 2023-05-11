@@ -6,6 +6,7 @@ use App\Repository\PariRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: PariRepository::class)]
 class Pari
 {
@@ -79,4 +80,9 @@ class Pari
 
         return $this;
     }
+
+
+
+
+
 }

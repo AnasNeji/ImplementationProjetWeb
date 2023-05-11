@@ -16,8 +16,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PariSingulierRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
+
         parent::__construct($registry, PariSingulier::class);
     }
 
@@ -42,17 +45,26 @@ class PariSingulierRepository extends ServiceEntityRepository
 //    /**
 //     * @return PariSingulier[] Returns an array of PariSingulier objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByPariId($PariId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.Id_pari = :val')
+            ->setParameter('val', $PariId)
+            //->orderBy('p.id', 'ASC')
+            //->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getTotalOdds($IdPari): float
+    {
+
+        $PariSinguliers = $this->findByPariId($IdPari);
+        $totalOdds = 1.0;
+        foreach ($PariSinguliers as $PariSingulier) {
+            $totalOdds *= $PariSingulier->getCote();
+        }
+        return $totalOdds;
 
 //    public function findOneBySomeField($value): ?PariSingulier
 //    {
@@ -63,4 +75,5 @@ class PariSingulierRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    }
 }
