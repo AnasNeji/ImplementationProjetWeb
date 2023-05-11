@@ -18,7 +18,9 @@ class SignupController extends AbstractController
      * @Route("/register", name="register")
      */
     public function register(Request $request, EntityManagerInterface $entityManager,Session $session ): Response
-    {
+    {   if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
         $user = new User();
         $form = $this->createForm(UserRegistrationFormType::class, $user);
 
@@ -31,7 +33,9 @@ class SignupController extends AbstractController
             $entityManager->flush();
 
             // Redirect to success page or do any other actions
-            $session->set('username',$user->getUsername());
+            $session = $request->getSession();
+            $session->set('user_id', $user->getId());
+            $session->set('loggedIn', true);
             return $this->redirect('/home');
         }
 

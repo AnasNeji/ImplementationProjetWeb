@@ -15,27 +15,27 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    /**a
-     * @Route("/profile/{id}, name="profile")
-     */
-    public function profile( UserRepository $userRepository, ManagerRegistry $doctrine, Request $request, PariRepository $PariRepository, PariSingulierRepository $repository,$id=null,Session $session): Response
+    #[Route('/profile', name: 'profile', methods: ['GET'])]
+    public function profile( UserRepository $userRepository,
+                             ManagerRegistry $doctrine,
+                             Request $request,
+                             PariRepository $PariRepository,
+                             PariSingulierRepository $repository,
+                             SessionInterface $session): Response
     {
 
-//        if (!($this->session->has('user_id'))) {return $this->redirect('/login');};
-        //$connecteduser=$userRepository->findBy(['Username' => $session['username']]);
-//        if($id==null)
-//        {
-//            $id=1;
-//        }
-        $user = $userRepository->findById($id);
-//        if(!$user ||$id!=$connecteduser->getId())
-//        {
-//            return($this->redirect('/home'));
-//        }
-        $paris = $PariRepository->findByUserId($id);
+        if (!$session->get('loggedIn')) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user = $userRepository->findById($session->get('user_id'));
+
+
+        $paris = $PariRepository->findByUserId($user[0]->getId());
         $PasswordForm = $this->createForm(ChangePasswordType::class);
         $form=$this->createForm(UserType::class,$user[0]);
         $entityManager = $doctrine->getManager();
