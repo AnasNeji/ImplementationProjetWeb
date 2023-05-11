@@ -19,14 +19,14 @@ class ProfileController extends AbstractController
     /**a
      * @Route("/profile/{id}, name="profile")
      */
-    public function profile($id=null, UserRepository $userRepository, ManagerRegistry $doctrine, Request $request, PariRepository $PariRepository, PariSingulierRepository $repository): Response
+    public function profile( UserRepository $userRepository, ManagerRegistry $doctrine, Request $request, PariRepository $PariRepository, PariSingulierRepository $repository,$id=null): Response
     {
 //        $session = $request->getSession();
 //        if (!($session->has('Username'))) {return $this->redirect('/login');};
-//        $connecteduser=$userRepository->findOneBy(['Username' => $session['Username']]);
+//        $connecteduser=$userRepository->findOneBy(['Username' => $session['username']]);
 //        if($id==null)
 //        {
-//            $id=$connecteduser->getId();
+//            $id=1;
 //        }
         $user = $userRepository->findById($id);
 //        if(!$user ||$id!=$connecteduser->getId())

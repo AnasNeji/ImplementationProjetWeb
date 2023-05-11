@@ -31,7 +31,7 @@
     <nav class="navbar navbar navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="Home.html">LASXDOU</a>
+            <a class="navbar-brand" href="/Home">LASXDOU</a>
 
             </a>
             <button
@@ -51,13 +51,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="./Login.html">Login</a>
-                    <a class="nav-link" aria-current="page" href="./Home.html"
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link"href="/home"
                     >Page d'accueil</a
                     >
-                    <a class="nav-link active"  href="./Bet.html">Lancer un pari</a>
-                    <a class="nav-link" href="./Profil.html">Profile</a>
-                    <a class="nav-link" href="/WinnerPage.html">Voir les paris gagnés</a>
+                    <a class="nav-link active"   aria-current="page"  href="/Bet">Lancer un pari</a>
+                    <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="/winningbets">Voir les paris gagnés</a>
                 </div>
             </div>
         </div>
@@ -207,7 +207,7 @@
 </footer>
 
 </body>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src={{ asset('node_modules/bootstrap/dist/js/bootstrap.min.js') }}></script>
 <script src={{ asset('assets/Bet.js.twig?timestamp=172305643') }}></script>
 <script>
     new Vue({

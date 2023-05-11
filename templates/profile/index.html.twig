@@ -64,12 +64,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        {% if app.user %}
-                            <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
-                        {% else %}
-                            <a class="nav-link" href="/login">Login</a>
-                        {% endif %}
-                        <a class="nav-link"  href="/{{ path('home') }}"
+                        <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link"  href="/home"
                         >Page d'accueil</a>
                         <a class="nav-link" href="/bet">Lancer un pari</a>
                         <a class="nav-link" href="/winningbets">Voir les paris gagnés</a>
