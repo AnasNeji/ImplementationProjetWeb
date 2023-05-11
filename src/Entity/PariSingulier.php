@@ -92,7 +92,7 @@ class PariSingulier
 
         return match ($this->Choix) {
             '1' => $fixture->getOdds1(),
-            'x' => $fixture->getOddsX(),
+            'X' => $fixture->getOddsX(),
             '2' => $fixture->getOdds2(),
             default => null,
         };
@@ -110,9 +110,11 @@ class PariSingulier
         $Match_Details=$fixture->getEquipe1()->getAbreviation().
                         "   vs    ".
                         $fixture->getEquipe2()->getAbreviation().
-                        $this->getCote().
                         "       choix= ".
-                        $this->getChoix();
+                        $this->getChoix().
+                        "        cout=".
+                        $this->getCote();
+
         return $Match_Details;
     }
 
