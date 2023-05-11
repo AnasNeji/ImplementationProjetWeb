@@ -70,7 +70,7 @@
                         >Page d'accueil</a
                         >
                         <a class="nav-link" href="/Bet/1">Lancer un pari</a>
-                        <a class="nav-link" href="/WinnerPage.html">Voir les paris gagnés</a>
+                        <a class="nav-link" href="/winningbets">Voir les paris gagnés</a>
                     </div>
                 </div>
             </div>
@@ -112,8 +112,7 @@
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                         data-bs-target="#collapse{{ pari.id }}" aria-expanded="true"
                                                         aria-controls="collapse{{ pari.id }}">
-                                                    Bet Number {{ pari.id }}, {{ pari.getDateCreation()|date('d/m/Y') }}
-                                                    , {{ pari.resultat }}
+                                                    Bet Number {{ pari.id }}, {{ pari.getDateCreation()|date('d/m/Y') }}, {% if (pari.resultat) %} gagné {% endif %}
                                                 </button>
                                             </h2>
                                             <div id="collapse{{ pari.id }}" class="accordion-collapse collapse show"

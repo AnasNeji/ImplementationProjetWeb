@@ -14,7 +14,7 @@ class WinningBetsController extends AbstractController
 {
     #[Route('/winningbets', name: 'app_winning_bets')]
     public function index(PariRepository $pariRepository,PariSingulierRepository $pariSingulierRepository): Response
-    {   $paris=$pariRepository->findByResultat();
+    {   $paris=$pariRepository->findByResultat(1);
 
         return $this->render('winning_bets/index.html.twig', [
             'id_pari' => $paris,'repository'=>$pariSingulierRepository

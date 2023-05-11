@@ -50,16 +50,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    {% if app.user %}
-                        <a class="nav-link" href="/Profil.html">Profile</a>
-                    {% else %}
-                        <a class="nav-link" href="/Login.html">Login</a>
-                    {% endif %}
-                    <a class="nav-link"  href="/Home.html"
+                    <a class="nav-link" href="/profile/1">Profile</a>
+                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                    <a class="nav-link" href="/home"
                     >Page d'accueil</a
                     >
-                    <a class="nav-link" href="/Bet.html">Lancer un pari</a>
-                    <a class="nav-link active" aria-current="page" href="/WinnerPage.html">Voir les paris gagnés</a>
+                    <a class="nav-link" href="/Bet/1">Lancer un pari</a>
+                    <a class="nav-link active" aria-current="page" href="/winningbets">Voir les paris gagnés</a>
                 </div>
             </div>
         </div>
@@ -87,27 +84,29 @@
                         />  Liste des paris gagnés :
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-inline-flex" style="gap: 10vw">
-                            {% for pari in id_pari %}
-                            <div>id pari : {{ pari.id }}</div>
-                            <div>Lancé par : {{ pari.Id_user }}</div>
-                            <div>le : {{ pari.Date_creation }}</div>
-                            <button class="btn"><i class="bi bi-three-dots-vertical"></i></button>
-                            <button onclick="toggleExpandable()"><i class="bi bi-three-dots-vertical"></i></button>
-                            <div id="expandableDiv" class="expandable-content">
-                                <p >More information here</p>
-                            </div>
-                            <script>
-                                function toggleExpandable() {
-                                    var div = document.getElementById("expandableDiv");
-                                    if (div.style.display === "none") {
-                                        div.style.display = "block";
-                                    } else {
-                                        div.style.display = "none";
+                        {% for pari in id_pari %}
+                            <li class="list-group-item d-inline-flex" style="gap: 10vw">
+
+                                <div>id pari : {{ pari.id }}</div>
+                                <div>Lancé par : {{ (pari.idUser).Username }}</div>
+                                <div>le : {{ pari.getDateCreation().format('Y-m-d H:i') }}</div>
+                                <button class="btn"><i class="bi bi-three-dots-vertical"></i></button>
+                                <button onclick="toggleExpandable()"><i class="bi bi-three-dots-vertical"></i></button>
+                                <div id="expandableDiv" class="expandable-content">
+                                    <p >More information here</p>
+                                </div>
+                                <script>
+                                    function toggleExpandable() {
+                                        var div = document.getElementById("expandableDiv");
+                                        if (div.style.display === "none") {
+                                            div.style.display = "block";
+                                        } else {
+                                            div.style.display = "none";
+                                        }
                                     }
-                                }
-                            </script>
-                        </li>
+                                </script>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
 
@@ -150,6 +149,8 @@
     </div>
     <!-- Copyright -->
 </footer>
+{% endblock %}
 </body>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </html>
