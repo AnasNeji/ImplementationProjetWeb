@@ -13,17 +13,19 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ProfileController extends AbstractController
 {
     /**a
      * @Route("/profile/{id}, name="profile")
      */
-    public function profile( UserRepository $userRepository, ManagerRegistry $doctrine, Request $request, PariRepository $PariRepository, PariSingulierRepository $repository,$id=null): Response
+    public function profile( UserRepository $userRepository, ManagerRegistry $doctrine, Request $request, PariRepository $PariRepository, PariSingulierRepository $repository,$id=null,Session $session): Response
     {
-//        $session = $request->getSession();
-//        if (!($session->has('Username'))) {return $this->redirect('/login');};
-//        $connecteduser=$userRepository->findOneBy(['Username' => $session['username']]);
+
+//        if (!($this->session->has('user_id'))) {return $this->redirect('/login');};
+        $connecteduser=$userRepository->findBy(['Username' => $session['username']]);
 //        if($id==null)
 //        {
 //            $id=1;
