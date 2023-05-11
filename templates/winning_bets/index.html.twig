@@ -84,29 +84,35 @@
                         />  Liste des paris gagnés :
                     </div>
                     <ul class="list-group list-group-flush">
-                        {% for pari in id_pari %}
-                            <li class="list-group-item d-inline-flex" style="gap: 10vw">
+                            <li class="list-group-item">
+                                <div class="accordion" id="accordionExample">
+                                    {% for pari in paris %}
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse{{ pari.id }}" aria-expanded="true"
+                                                        aria-controls="collapse{{ pari.id }}">
+                                                    id_pari : {{ pari.id }},lancé par :  {{ (pari.idUser).Username }}, date :{{ pari.getDateCreation()|date('d/m/Y') }}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse{{ pari.id }}" class="accordion-collapse collapse show"
+                                                 data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <strong>This is the Bet Number {{ pari.id }} Matches:</strong>
+                                                    {% for parisingulier in repository.findByPariId(pari.id) %}
 
-                                <div>id pari : {{ pari.id }}</div>
-                                <div>Lancé par : {{ (pari.idUser).Username }}</div>
-                                <div>le : {{ pari.getDateCreation().format('Y-m-d H:i') }}</div>
-                                <button class="btn"><i class="bi bi-three-dots-vertical"></i></button>
-                                <button onclick="toggleExpandable()"><i class="bi bi-three-dots-vertical"></i></button>
-                                <div id="expandableDiv" class="expandable-content">
-                                    <p >More information here</p>
+
+                                                        <p>{{ parisingulier.getPariSingulierDetails() }}</p>
+                                                    {% endfor %}
+                                                    <p>Montant parié :{{ pari.getMontantParie() }}Dt</p>
+                                                    <p>Montant gagné : {{ pari.getMontantParie()* repository.getTotalOdds(pari.id)  }}
+                                                        Dt</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
-                                <script>
-                                    function toggleExpandable() {
-                                        var div = document.getElementById("expandableDiv");
-                                        if (div.style.display === "none") {
-                                            div.style.display = "block";
-                                        } else {
-                                            div.style.display = "none";
-                                        }
-                                    }
-                                </script>
                             </li>
-                        {% endfor %}
                     </ul>
                 </div>
 
@@ -153,4 +159,3 @@
 </body>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-</html>
