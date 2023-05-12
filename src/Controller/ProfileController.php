@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'profile', methods: ['GET'])]
+    #[Route('/profile', name: 'profile', methods: ['GET', 'POST'])]
     public function profile( UserRepository $userRepository,
                              ManagerRegistry $doctrine,
                              Request $request,
